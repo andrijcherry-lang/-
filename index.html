@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скачивание архива</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .box {
+            background: #1a1a1a;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 420px;
+        }
+        h1 { margin: 0 0 12px; font-size: 1.6rem; }
+        p { margin: 0 0 24px; opacity: 0.7; line-height: 1.5; }
+        .btn {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #2563eb; }
+        .status { margin-top: 20px; font-size: 0.9rem; color: #22c55e; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Скачивание началось</h1>
+        <p>Архив автоматически загружается.<br>Если скачивание не началось — нажмите кнопку ниже.</p>
+        <a class="btn" id="downloadBtn" href="archive.zip" download="MV_2.7.1_FIXED.zip">Скачать архив</a>
+        <div class="status" id="status">Загрузка...</div>
+    </div>
+
+    <script>
+        // Автоматическое скачивание при заходе на страницу
+        window.onload = function() {
+            const link = document.getElementById('downloadBtn');
+            // Создаём временную ссылку и кликаем по ней
+            const a = document.createElement('a');
+            a.href = 'archive.zip';
+            a.download = 'MV_2.7.1_FIXED.zip';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            document.getElementById('status').textContent = 'Архив отправлен на скачивание';
+        };
+    </script>
+</body>
+</html>
